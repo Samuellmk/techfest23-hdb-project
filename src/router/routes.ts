@@ -7,7 +7,11 @@ const routes: RouteRecordRaw[] = [
     component: () => HomeLayout,
     children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
   },
-
+  {
+    path: '/login',
+    component: () => import('layouts/NoLoginLayout.vue'),
+    children: [{ path: '', component: () => import('pages/LoginPage.vue') }],
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

@@ -69,7 +69,7 @@ const $router = useRouter();
 
 const onSubmit = () => {
   if (singpassId.value !== '' && password.value !== '') {
-    $router.push({ path: '/test' });
+    $router.push({ path: '/' });
   }
 };
 </script>
