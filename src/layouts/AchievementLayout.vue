@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="bg-grey-3">
     <q-layout view="lHh lpr lFf">
       <q-header bordered class="bg-white text-primary">
         <q-toolbar elevated>
@@ -13,94 +13,55 @@
       </q-header>
 
       <q-page-container>
-        <q-item clickable v-ripple class="bg-grey-2">
-          <q-item-section avatar>
-            <q-avatar rounded>
-              <img src="https://cdn.quasar.dev/img/chaosmonkey.png" />
-            </q-avatar>
-          </q-item-section>
+        <q-list bordered class="rounded-borders" style="max-width: 600px">
+          <q-item-label header>List of Achievements</q-item-label>
 
-          <q-item-section>
-            <q-item-label> Mini Adventurer </q-item-label>
-            <q-item-label caption>
-              <q-badge color="yellow-6" text-color="black">
-                5 Locations Visited
-                <q-icon name="warning" size="14px" class="q-ml-xs" />
-              </q-badge>
-            </q-item-label>
-          </q-item-section>
+          <q-item v-for="achievement in achievements" :key="achievement.title">
+            <q-item-section avatar top>
+              <q-avatar>
+                <img :src="`${achievement.img}`" />
+              </q-avatar>
+            </q-item-section>
 
-          <q-item-section side>
-            <span>Completed</span>
-          </q-item-section>
-        </q-item>
+            <q-item-section top>
+              <q-item-label lines="1">
+                <span class="text-weight-medium">{{ achievement.title }}</span>
+              </q-item-label>
+              <q-item-label lines="1">
+                <span class="text-grey-8"> - {{ achievement.desc }}</span>
+              </q-item-label>
+              <q-item-label caption lines="1">
+                {{ achievement.captions }}
+              </q-item-label>
+              <q-item-label
+                lines="1"
+                class="q-mt-xs text-body2 text-weight-bold text-uppercase"
+                :class="achievement.complete ? 'text-green' : 'text-red'"
+              >
+                <span>{{
+                  achievement.complete ? 'Complete' : 'Incomplete'
+                }}</span>
+              </q-item-label>
+            </q-item-section>
 
-        <q-item clickable v-ripple class="bg-grey-2">
-          <q-item-section avatar>
-            <q-avatar rounded>
-              <img src="https://cdn.quasar.dev/img/chaosmonkey.png" />
-            </q-avatar>
-          </q-item-section>
+            <q-item-section top side>
+              <div class="text-grey-8 q-gutter-xs">
+                <q-btn
+                  class="gt-xs"
+                  size="12px"
+                  flat
+                  dense
+                  round
+                  icon="delete"
+                />
+                <q-btn class="gt-xs" size="12px" flat dense round icon="done" />
+                <q-btn size="12px" flat dense round icon="more_vert" />
+              </div>
+            </q-item-section>
+          </q-item>
 
-          <q-item-section>
-            <q-item-label> The Best of the Best </q-item-label>
-            <q-item-label caption>
-              <q-badge color="yellow-6" text-color="black">
-                30 Locations Visited
-                <q-icon name="warning" size="14px" class="q-ml-xs" />
-              </q-badge>
-            </q-item-label>
-          </q-item-section>
-
-          <q-item-section side>
-            <span>Completed</span>
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple class="bg-grey-2">
-          <q-item-section avatar>
-            <q-avatar rounded>
-              <img src="https://cdn.quasar.dev/img/chaosmonkey.png" />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label> Fault Master </q-item-label>
-            <q-item-label caption>
-              <q-badge color="yellow-6" text-color="black">
-                5 Faults Reported
-                <q-icon name="warning" size="14px" class="q-ml-xs" />
-              </q-badge>
-            </q-item-label>
-          </q-item-section>
-
-          <q-item-section side>
-            <span>Not Completed</span>
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple class="bg-grey-2">
-          <q-item-section avatar>
-            <q-avatar rounded>
-              <img src="https://cdn.quasar.dev/img/chaosmonkey.png" />
-            </q-avatar>
-          </q-item-section>
-
-          <q-item-section>
-            <q-item-label> King of All Faults </q-item-label>
-            <q-item-label caption>
-              <q-badge color="yellow-6" text-color="black">
-                10 Faults Reported
-                <q-icon name="warning" size="14px" class="q-ml-xs" />
-              </q-badge>
-            </q-item-label>
-          </q-item-section>
-
-          <q-item-section side>
-            <span>Not Completed</span>
-          </q-item-section>
-        </q-item>
-        <q-page class="q-pa-md"> Hi my name is nino </q-page>
+          <q-separator spaced />
+        </q-list>
       </q-page-container>
 
       <q-footer class="bg-white"> </q-footer>
@@ -110,4 +71,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { achievements } from './achievements';
+
+const achievementsList: achievementsListProps[] = achievements;
 </script>

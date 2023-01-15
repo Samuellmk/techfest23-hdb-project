@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
-import HomeLayout from 'src/layouts/MainLayout_Bottom.vue';
+//import HomeLayout from 'src/layouts/MainLayout_Bottom.vue';
+import HomeLayout from 'src/layouts/AchievementLayout.vue';
 
 const routes: RouteRecordRaw[] = [
   {
