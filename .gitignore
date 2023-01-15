@@ -31,3 +31,9 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+src-capacitor/android/app/capacitor.build.gradle
+src-capacitor/android/app/src/main/assets/capacitor.config.json
+src-capacitor/android/app/src/main/res/xml/config.xml
+src-capacitor/android/capacitor.settings.gradle
+src-capacitor/capacitor.config.json
+src-capacitor/package.json
