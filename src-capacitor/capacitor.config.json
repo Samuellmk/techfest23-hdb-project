@@ -1,0 +1,7 @@
+{
+  "appId": "org.techfestgroup14.hdb.crowd",
+  "appName": "HDB App",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

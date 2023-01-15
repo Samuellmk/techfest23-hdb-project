@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HDB App</string>
+    <string name="title_activity_main">HDB App</string>
+    <string name="package_name">org.techfestgroup14.hdb.crowd</string>
+    <string name="custom_url_scheme">org.techfestgroup14.hdb.crowd</string>
+</resources>
