@@ -10,6 +10,7 @@
       <q-page-container>
         <q-page class="bg-grey-2">
           <router-view />
+          <CreatePostDialog v-model:dialog="dialogForPostCreation" />
         </q-page>
       </q-page-container>
 
@@ -36,7 +37,17 @@
           v-model="tab"
         >
           <q-tab :ripple="false" name="home" icon="home" label="Home" />
-          <q-tab :ripple="false" name="videos" icon="add" label="Create" />
+          <q-tab
+            :ripple="false"
+            name="videos"
+            icon="add"
+            label="Create"
+            @click="
+              () => {
+                dialogForPostCreation = true;
+              }
+            "
+          />
           <q-tab
             :ripple="false"
             name="inbox"
@@ -55,8 +66,11 @@ import EssentialLink, {
   EssentialLinkProps,
 } from 'components/EssentialLink.vue';
 import { communities } from './communities';
+import CreatePostDialog from 'src/components/CreatePostDialog.vue';
 
 const tab = ref('images');
+
+const dialogForPostCreation = ref(false);
 
 const essentialLinks: EssentialLinkProps[] = communities;
 
