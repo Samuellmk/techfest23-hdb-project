@@ -63,7 +63,10 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        MAPBOX_ACCESS_TOKEN:
+          'pk.eyJ1IjoibGl6aGFveXVhbjEyMyIsImEiOiJjbGN4bzU4cm0wMGs2M29vODc5MDJvamljIn0.BzCAI_NWKyUBHv2aQYhkuQ',
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
