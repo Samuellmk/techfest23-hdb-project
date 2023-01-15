@@ -8,7 +8,7 @@
       </q-header>
 
       <q-page-container>
-        <q-page class="q-pa-md">
+        <q-page class="bg-grey-2">
           <router-view />
         </q-page>
       </q-page-container>
