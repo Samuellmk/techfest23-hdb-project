@@ -13,14 +13,15 @@
           />
           <q-toolbar-title class="text-center">
             <q-avatar>
-              <img src="https://cdn.quasar.dev/logo-v2/svg/logo.svg" />
+              <img
+                src="https://upload.wikimedia.org/wikipedia/en/7/72/Housing_and_Development_Board_%28logo%29.png"
+              />
             </q-avatar>
-            Quasar Framework
+            HDB Project
           </q-toolbar-title>
         </q-toolbar>
       </q-header>
 
-      <!-- Containers Disappeared @Sam Please Help!!-->
       <q-page-container>
         <q-page class="q-pa-md"> Hi my name is nino </q-page>
       </q-page-container>
