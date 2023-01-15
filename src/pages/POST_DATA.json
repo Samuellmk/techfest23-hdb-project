@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "community": "422 Northfield Lane",
+    "title": "David and Bathsheba",
+    "votes": 1,
+    "comments": 82,
+    "last_posted": 15,
+    "image": "http://dummyimage.com/110x100.png/dddddd/000000"
+  },
+  {
+    "id": 2,
+    "community": "421 Quincy Pass",
+    "title": "Pretty Baby",
+    "votes": 2,
+    "comments": 38,
+    "last_posted": 1,
+    "image": "http://dummyimage.com/184x100.png/dddddd/000000"
+  },
+  {
+    "id": 3,
+    "community": "929 Hudson Street",
+    "title": "Alice Adams",
+    "votes": 10,
+    "comments": 21,
+    "last_posted": 5,
+    "image": "http://dummyimage.com/104x100.png/dddddd/000000"
+  },
+  {
+    "id": 4,
+    "community": "0 Comanche Hill",
+    "title": "My Foolish Heart",
+    "votes": 9,
+    "comments": 63,
+    "last_posted": 15,
+    "image": "http://dummyimage.com/232x100.png/dddddd/000000"
+  },
+  {
+    "id": 5,
+    "community": "2 5th Terrace",
+    "title": "7 Boxes (7 cajas)",
+    "votes": 6,
+    "comments": 100,
+    "last_posted": 15,
+    "image": "http://dummyimage.com/169x100.png/dddddd/000000"
+  },
+  {
+    "id": 6,
+    "community": "64 7th Point",
+    "title": "Insurgent",
+    "votes": 2,
+    "comments": 39,
+    "last_posted": 19,
+    "image": "http://dummyimage.com/133x100.png/ff4444/ffffff"
+  },
+  {
+    "id": 7,
+    "community": "6027 Toban Center",
+    "title": "East Palace West Palace (Dong gong xi gong)",
+    "votes": 1,
+    "comments": 92,
+    "last_posted": 12,
+    "image": "http://dummyimage.com/236x100.png/ff4444/ffffff"
+  },
+  {
+    "id": 8,
+    "community": "8 Tony Junction",
+    "title": "It's the Great Pumpkin, Charlie Brown",
+    "votes": 8,
+    "comments": 47,
+    "last_posted": 20,
+    "image": "http://dummyimage.com/176x100.png/dddddd/000000"
+  },
+  {
+    "id": 9,
+    "community": "56 Farmco Court",
+    "title": "Sir Arne's Treasure",
+    "votes": 0,
+    "comments": 41,
+    "last_posted": 15,
+    "image": "http://dummyimage.com/218x100.png/ff4444/ffffff"
+  },
+  {
+    "id": 10,
+    "community": "8431 Lunder Alley",
+    "title": "Crazy/Beautiful",
+    "votes": 3,
+    "comments": 94,
+    "last_posted": 1,
+    "image": "http://dummyimage.com/184x100.png/dddddd/000000"
+  }
+]
