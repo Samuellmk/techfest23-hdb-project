@@ -43,13 +43,12 @@
             label="Home"
             @click="onHomeClick"
           />
-          <q-tab
-            :ripple="false"
-            name="videos"
-            icon="add"
-            label="Create"
-            @click="onCreateClick"
-          />
+          <q-btn no-caps flat :ripple="false" @click="onCreateClick">
+            <div class="column items-center no-wrap">
+              <q-icon name="add" style="font-size: 2.3em; margin: -4px" />
+              <div class="text-center" style="font-size: 0.8em">Create</div>
+            </div>
+          </q-btn>
           <q-tab
             :ripple="false"
             name="achievement"
@@ -100,6 +99,10 @@ const onAchievementClick = () => {
 </script>
 
 <style scoped>
+.create-btn {
+  font-size: 2.3em !important;
+}
+
 :deep(.q-tab__icon) {
   font-size: 2.3em;
 }
