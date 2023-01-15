@@ -36,23 +36,26 @@
           class="text-grey"
           v-model="tab"
         >
-          <q-tab :ripple="false" name="home" icon="home" label="Home" />
+          <q-tab
+            :ripple="false"
+            name="home"
+            icon="home"
+            label="Home"
+            @click="onHomeClick"
+          />
           <q-tab
             :ripple="false"
             name="videos"
             icon="add"
             label="Create"
-            @click="
-              () => {
-                dialogForPostCreation = true;
-              }
-            "
+            @click="onCreateClick"
           />
           <q-tab
             :ripple="false"
-            name="inbox"
-            icon="notifications"
-            label="Inbox"
+            name="achievement"
+            icon="stars"
+            label="Achievement"
+            @click="onAchievementClick"
           />
         </q-tabs>
       </q-footer>
@@ -67,6 +70,9 @@ import EssentialLink, {
 } from 'components/EssentialLink.vue';
 import { communities } from './communities';
 import CreatePostDialog from 'src/components/CreatePostDialog.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const tab = ref('images');
 
@@ -78,6 +84,18 @@ const leftDrawerOpen = ref(false);
 
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
+};
+
+const onHomeClick = () => {
+  router.push('/');
+};
+
+const onCreateClick = () => {
+  dialogForPostCreation.value = true;
+};
+
+const onAchievementClick = () => {
+  router.push('/achievement');
 };
 </script>
 
