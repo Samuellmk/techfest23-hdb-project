@@ -36,24 +36,26 @@
           class="text-grey"
           v-model="tab"
         >
-          <q-tab :ripple="false" name="home" icon="home" label="Home" />
+          <q-tab
+            :ripple="false"
+            name="home"
+            icon="home"
+            label="Home"
+            @click="onHomeClick"
+          />
           <q-tab
             :ripple="false"
             name="videos"
             icon="add"
             label="Create"
-            @click="
-              () => {
-                dialogForPostCreation = true;
-              }
-            "
+            @click="onCreateClick"
           />
           <q-tab
             :ripple="false"
             name="achievement"
             icon="stars"
             label="Achievement"
-            @click="onAchievementClick()"
+            @click="onAchievementClick"
           />
         </q-tabs>
       </q-footer>
@@ -82,6 +84,14 @@ const leftDrawerOpen = ref(false);
 
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
+};
+
+const onHomeClick = () => {
+  router.push('/');
+};
+
+const onCreateClick = () => {
+  dialogForPostCreation.value = true;
 };
 
 const onAchievementClick = () => {
