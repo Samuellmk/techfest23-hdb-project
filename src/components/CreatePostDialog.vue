@@ -8,38 +8,26 @@
       transition-hide="slide-down"
     >
       <q-card class="bg-white text-black">
-        <q-bar>
-          <q-space />
-
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip class="bg-white text-primary">Close</q-tooltip>
-          </q-btn>
-        </q-bar>
-
-        <q-card-section>
-          <div class="text-h6">Create New Fault Post</div>
-        </q-card-section>
+        <q-btn dense flat icon="close" v-close-popup size="lg">
+          <q-tooltip class="bg-white text-primary">Close</q-tooltip>
+        </q-btn>
 
         <q-card-section class="q-pt-none">
           <q-form @submit="onSubmit">
             <q-input
-              filled
+              borderless
               v-model="title"
-              label="Title Of Your Post"
-              lazy-rules
-              :rules="[
-                (val) => (val && val.length > 0) || 'Please type something',
-              ]"
+              placeholder="Add a title"
+              :input-style="{ fontSize: 'large', fontWeight: 'bold' }"
+              autogrow
             />
             <br />
             <q-input
-              filled
+              borderless
               v-model="description"
-              label="Description of the fault"
-              lazy-rules
-              :rules="[
-                (val) => (val && val.length > 0) || 'Please type something',
-              ]"
+              placeholder="Add body text"
+              :input-style="{ fontSize: 'medium' }"
+              autogrow
             />
             <br />
             <q-uploader
