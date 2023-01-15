@@ -13,9 +13,7 @@
           />
           <q-toolbar-title class="text-center">
             <q-avatar>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/en/7/72/Housing_and_Development_Board_%28logo%29.png"
-              />
+              <img src="src\assets\hdb.png" />
             </q-avatar>
             HDB Project
           </q-toolbar-title>
