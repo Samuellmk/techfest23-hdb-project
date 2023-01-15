@@ -1,12 +1,17 @@
 import { RouteRecordRaw } from 'vue-router';
-//import HomeLayout from 'src/layouts/MainLayout_Bottom.vue';
-import HomeLayout from 'src/layouts/AchievementLayout.vue';
+import HomeLayout from 'src/layouts/MainLayout_Bottom.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => HomeLayout,
-    children: [{ path: '', component: () => import('pages/IndexPage.vue') }],
+    children: [
+      { path: '', component: () => import('pages/IndexPage.vue') },
+      {
+        path: 'achievement',
+        component: () => import('src/layouts/AchievementLayout.vue'),
+      },
+    ],
   },
   {
     path: '/login',

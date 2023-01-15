@@ -5,7 +5,7 @@
         <q-toolbar elevated>
           <q-toolbar-title class="text-center">
             <q-avatar size="30px">
-              <img src="src\assets\hdb.png" />
+              <img src="src\assets\hdb.png" alt="HDB Logo" />
             </q-avatar>
             Achievements
           </q-toolbar-title>
@@ -19,7 +19,7 @@
           <q-item v-for="achievement in achievements" :key="achievement.title">
             <q-item-section avatar top>
               <q-avatar>
-                <img :src="`${achievement.img}`" />
+                <img :src="`${achievement.img}`" alt="Image of Achievement" />
               </q-avatar>
             </q-item-section>
 
@@ -72,6 +72,4 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { achievements } from './achievements';
-
-const achievementsList: achievementsListProps[] = achievements;
 </script>

@@ -50,9 +50,10 @@
           />
           <q-tab
             :ripple="false"
-            name="inbox"
-            icon="notifications"
-            label="Inbox"
+            name="achievement"
+            icon="stars"
+            label="Achievement"
+            @click="onAchievementClick()"
           />
         </q-tabs>
       </q-footer>
@@ -67,6 +68,9 @@ import EssentialLink, {
 } from 'components/EssentialLink.vue';
 import { communities } from './communities';
 import CreatePostDialog from 'src/components/CreatePostDialog.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const tab = ref('images');
 
@@ -78,6 +82,10 @@ const leftDrawerOpen = ref(false);
 
 const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value;
+};
+
+const onAchievementClick = () => {
+  router.push('/achievement');
 };
 </script>
 
