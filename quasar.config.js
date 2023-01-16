@@ -27,7 +27,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: [],
+    boot: ['pocketbase'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.scss'],
@@ -66,6 +66,7 @@ module.exports = configure(function (/* ctx */) {
       env: {
         MAPBOX_ACCESS_TOKEN:
           'pk.eyJ1IjoibGl6aGFveXVhbjEyMyIsImEiOiJjbGN4bzU4cm0wMGs2M29vODc5MDJvamljIn0.BzCAI_NWKyUBHv2aQYhkuQ',
+        VITE_POCKETBASE_URL: 'http://localhost:8090',
       },
       // rawDefine: {}
       // ignorePublicFolder: true,

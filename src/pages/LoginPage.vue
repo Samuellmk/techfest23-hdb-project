@@ -1,6 +1,6 @@
 <template>
   <q-page
-    class="bg-grey window-height window-width row justify-center items-center"
+    class="bg-grey max-height window-width row justify-center items-center"
   >
     <div class="column">
       <div class="row">
@@ -16,41 +16,14 @@
       <div class="row">
         <q-card square bordered class="q-pa-lg shadow-1">
           <q-card-section>
-            <q-form class="q-gutter-md" @submit="onSubmit">
-              <q-input
-                square
-                filled
-                clearable
-                v-model="singpassId"
-                label="Singpass ID"
-                lazy-rules
-                :rules="[
-                  (val) => (val && val.length > 0) || 'Please type something',
-                ]"
-              />
-              <q-input
-                square
-                filled
-                clearable
-                v-model="password"
-                type="password"
-                label="Password"
-                lazy-rules
-                :rules="[
-                  (val) => (val && val.length > 0) || 'Please type something',
-                ]"
-              />
-              <q-card-actions class="q-px-md">
-                <q-btn
-                  unelevated
-                  color="primary"
-                  size="lg"
-                  class="full-width"
-                  label="Log in"
-                  type="submit"
-                />
-              </q-card-actions>
-            </q-form>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <LoginComponent />
+              </div>
+              <div>
+                <RegisterComponent />
+              </div>
+            </div>
           </q-card-section>
         </q-card>
       </div>
@@ -59,17 +32,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-
-const singpassId = ref('');
-const password = ref('');
-
-const $router = useRouter();
-
-const onSubmit = () => {
-  if (singpassId.value !== '' && password.value !== '') {
-    $router.push({ path: '/' });
-  }
-};
+import LoginComponent from '../components/LoginComponent.vue';
+import RegisterComponent from '../components/RegisterComponent.vue';
 </script>

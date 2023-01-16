@@ -5,6 +5,6 @@
   "npmClient": "npm",
   "webDir": "www",
   "server": {
-    "url": "http://10.91.57.53:9500"
+    "url": "http://192.168.1.2:9500"
   }
 }
