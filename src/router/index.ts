@@ -7,6 +7,7 @@ import {
 } from 'vue-router';
 
 import routes from './routes';
+import client from 'src/pocketbase';
 
 /*
  * If not building with SSR mode, you can
@@ -20,7 +21,9 @@ import routes from './routes';
 export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
-    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
+    : process.env.VUE_ROUTER_MODE === 'history'
+    ? createWebHistory
+    : createWebHashHistory;
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
@@ -30,6 +33,17 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> vueRouterMode
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE),
+  });
+
+  Router.beforeEach((to, from) => {
+    // Init the store within the beforeEach function as per the documentation:
+    // https://pinia.vuejs.org/core-concepts/outside-component-usage.html#single-page-applications
+    console.log(to.meta.requiresAuth);
+    if (to.meta.requiresAuth && !client?.authStore.token) {
+      return {
+        path: '/login',
+      };
+    }
   });
 
   return Router;
