@@ -1,7 +1,15 @@
 import { RouteRecordRaw } from 'vue-router';
-import HomeLayout from 'src/layouts/MainLayout_Bottom.vue';
+import HomeLayout from 'src/layouts/HeaderBottomNavLayout.vue';
+import PostViewMoreLayout from 'src/layouts/HeaderLayout.vue';
+import PostViewMoreComponent from 'src/components/PostViewMoreComponent.vue';
 
 const routes: RouteRecordRaw[] = [
+  // {
+  //   path: '/',
+  //   component: PostViewMoreLayout,
+  //   children: [{ path: '', component: () => PostViewMoreComponent }],
+  // },
+
   {
     path: '/',
     component: () => HomeLayout,

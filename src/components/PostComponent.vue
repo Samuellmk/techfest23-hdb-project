@@ -16,7 +16,7 @@
         <div class="row justify-between">
           <div class="row items-center justify-start">
             <q-btn flat color="grey-8" icon="add" padding="xs" size="sm" />
-            <div color="grey-8">{{ props.post.votes }}</div>
+            <div class="text-grey-8">{{ props.post.votes }}</div>
             <q-btn flat color="grey-8" icon="remove" padding="xs" size="sm" />
           </div>
           <div class="row items-center">
@@ -27,16 +27,12 @@
               padding="xs"
               size="sm"
             />
-            <div color="grey-8">{{ props.post.comments }}</div>
+            <div class="text-grey-8">{{ props.post.comments }}</div>
           </div>
-          <q-btn
-            flat
-            color="grey-8"
-            icon="o_share"
-            padding="xs"
-            size="sm"
-            label="share"
-          />
+          <div class="row items-center">
+            <q-btn flat color="grey-8" icon="o_share" padding="xs" size="sm" />
+            <div class="text-grey-8">Share</div>
+          </div>
         </div>
       </div>
       <div class="col-4 center">
