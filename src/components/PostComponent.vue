@@ -6,7 +6,9 @@
           <q-icon name="style" class="q-mr-xs" />
           <div class="text-subtitle q-mr-sm">{{ props.post.community }}</div>
           <div class="text-subtitle text-grey-7 q-mr-sm">•</div>
-          <div class="text-subtitle text-grey-7">{{ props.post.created }}h</div>
+          <div class="text-subtitle text-grey-7">
+            {{ getDateTimeDiff(props.post.created) }}
+          </div>
         </div>
         <p>
           {{ props.post.title }}
@@ -50,10 +52,21 @@
 
 <script setup lang="ts">
 import { PBPostModel } from 'src/pages/creation-interface';
-import { PostModel } from './models';
+import moment from 'moment';
 const props = defineProps<{
   post: PBPostModel;
 }>();
+
+const getDateTimeDiff = (created: string | Date) => {
+  const now = moment().local();
+  const from = moment.utc(created).local();
+  const diff = now.diff(from, 'minutes');
+  if (diff <= 60) return Math.floor(diff) + 'm';
+  else if (diff <= 24 * 60) {
+    return Math.floor(diff / 60) + 'h';
+  }
+  return Math.floor(diff / 24 / 60) + 'd';
+};
 </script>
 
 <style scoped></style>
