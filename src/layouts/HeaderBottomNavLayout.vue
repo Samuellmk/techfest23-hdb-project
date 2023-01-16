@@ -1,17 +1,36 @@
 <template>
   <q-layout view="lHh lpr lFf">
     <q-header bordered class="bg-white text-primary">
-      <q-toolbar elevated class="justify-between">
-        <q-btn flat icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+      <q-toolbar elevated class="row justify-between no-padding">
         <q-btn
+          v-if="tab === 'home'"
+          flat
+          icon="menu"
+          aria-label="Menu"
+          @click="toggleLeftDrawer"
+        />
+        <q-btn
+          v-if="tab === 'home'"
           unelevated
           rounded
+          class="q-mx-md"
           size="sm"
           color="red-8"
           label="Log out"
           text-color="white"
           aira-label="Logout"
           @click="onLogoutClick"
+        />
+        <q-btn
+          v-if="
+            (route.name === 'redemption' || route.name === 'redeem') &&
+            tab !== 'home'
+          "
+          flat
+          icon="arrow_back"
+          aria-label="back"
+          color="black"
+          @click="() => router.back()"
         />
       </q-toolbar>
     </q-header>
@@ -75,8 +94,8 @@ import { ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 import { communities } from './communities';
 import CreatePostDialog from 'src/components/CreatePostDialog.vue';
-import { useRouter } from 'vue-router';
-import { useUserStore } from 'src/stores/user';
+import { useRoute, useRouter } from 'vue-router';
+import { useUserStore } from 'src/stores/user-store';
 import PocketBase from 'pocketbase';
 import { useQuasar } from 'quasar';
 
@@ -84,8 +103,9 @@ const pb = new PocketBase(process.env.VITE_POCKETBASE_URL);
 const $q = useQuasar();
 const userStore = useUserStore();
 const router = useRouter();
+const route = useRoute();
 
-const tab = ref('images');
+const tab = ref('home');
 
 const dialogForPostCreation = ref(false);
 

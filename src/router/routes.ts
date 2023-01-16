@@ -16,11 +16,13 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'redemption',
+        name: 'redemption',
         component: () => import('src/pages/PointRedemptionPage.vue'),
       },
       {
         path: 'redeem',
-        component: () => import('src/pages/redeemPage.vue'),
+        name: 'redeem',
+        component: () => import('src/pages/RedeemPage.vue'),
       },
     ],
   },

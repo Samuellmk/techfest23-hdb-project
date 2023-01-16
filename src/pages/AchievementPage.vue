@@ -1,14 +1,29 @@
 <template>
   <q-page class="bg-grey-3">
-    <q-item :clickable="true" @click="onRedemptionClick()">
-      <q-item-section> Points Available:</q-item-section>
-      <q-item-section> {{ user.points }} </q-item-section>
-    </q-item>
-
+    <div class="row justify-between bg-white q-pa-md">
+      <div class="column">
+        <div class="text-weight-medium text-subtitle">Points Balance</div>
+        <div class="text-h5 row items-center text-weight-bold">
+          <q-icon name="o_savings" class="q-pr-sm" size="md" />
+          {{ store.points }}
+        </div>
+      </div>
+      <div class="items-center row">
+        <q-btn
+          unelevated
+          color="blue-7"
+          label="Redeem"
+          @click="onRedemptionClick()"
+        />
+      </div>
+    </div>
     <q-list bordered class="rounded-borders" style="max-width: 600px">
-      <q-item-label header>List of Achievements</q-item-label>
-
-      <q-item v-for="achievement in achievements" :key="achievement.title">
+      <q-item
+        v-for="achievement in achievementRef"
+        :key="achievement.title"
+        ref="itemsToRef"
+        class="bg-white q-mb-xs"
+      >
         <q-item-section avatar top>
           <q-avatar>
             <img :src="`${achievement.img}`" alt="Image of Achievement" />
@@ -40,7 +55,14 @@
         </q-item-section>
 
         <q-item-section side top>
-          <q-btn class="xs" size="12px" icon="done" />
+          <q-btn
+            unelevated
+            :color="!achievement.complete ? 'grey-6' : 'green-7'"
+            size="md"
+            icon="done"
+            :disable="achievement.redeem"
+            @click="onClickMark(achievement)"
+          />
         </q-item-section>
       </q-item>
 
@@ -50,13 +72,34 @@
 </template>
 
 <script setup lang="ts">
-import vuePlugin from '@vitejs/plugin-vue';
-import { ref } from 'vue';
 import { achievements } from './achievements';
 import { useRouter } from 'vue-router';
-import { userStore } from 'src/stores/user-store';
+import { useUserStore } from 'src/stores/user-store';
+import { ref } from 'vue';
 
-const user = userStore();
+interface Achievement {
+  id: number;
+  title: string;
+  desc: string;
+  img: string;
+  captions: string;
+  reported: number;
+  visited: number;
+  points: number;
+  complete: boolean;
+  redeem: boolean;
+}
+const itemsToRef = ref();
+const store = useUserStore();
+
+const achievementRef = ref(achievements);
+
+const onClickMark = (achievement: Achievement) => {
+  store.incrementPoints(achievement.points);
+  achievementRef.value.find((a: Achievement) => {
+    if (a.id === achievement.id) a.redeem = true;
+  });
+};
 
 const router = useRouter();
 const onRedemptionClick = () => {

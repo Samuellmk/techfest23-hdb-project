@@ -1,5 +1,6 @@
 export const achievements = [
   {
+    id: 1,
     title: 'Mini Adventurer',
     desc: '5 Locations Visited',
     img: 'https://upload.wikimedia.org/wikipedia/commons/6/64/GNU_Chess_on_macOS.png',
@@ -8,8 +9,10 @@ export const achievements = [
     visited: 5,
     points: 50,
     complete: true,
+    redeem: false,
   },
   {
+    id: 2,
     title: 'Beginner Adventurer',
     desc: '10 Locations Visited',
     img: 'http://dummyimage.com/114x100.png/dddddd/000000',
@@ -18,8 +21,10 @@ export const achievements = [
     visited: 10,
     points: 100,
     complete: true,
+    redeem: false,
   },
   {
+    id: 3,
     title: 'Ammateur Adventurer',
     desc: '15 Locations Visited',
     img: 'http://dummyimage.com/132x100.png/cc0000/ffffff',
@@ -28,8 +33,10 @@ export const achievements = [
     visited: 15,
     points: 150,
     complete: true,
+    redeem: false,
   },
   {
+    id: 4,
     title: 'Expert Adventurer',
     desc: '20 Locations Visited',
     img: 'http://dummyimage.com/140x100.png/dddddd/000000',
@@ -38,8 +45,10 @@ export const achievements = [
     visited: 20,
     points: 200,
     complete: true,
+    redeem: false,
   },
   {
+    id: 5,
     title: 'Amazing Adventurer???',
     desc: '25 Locations Visited',
     img: 'http://dummyimage.com/221x100.png/5fa2dd/ffffff',
@@ -48,8 +57,10 @@ export const achievements = [
     visited: 25,
     points: 250,
     complete: false,
+    redeem: false,
   },
   {
+    id: 6,
     title: 'Best of the Best',
     desc: '30 Locations Visited',
     img: 'https://cdn.quasar.dev/img/chaosmonkey.png',
@@ -58,8 +69,10 @@ export const achievements = [
     visited: 30,
     points: 300,
     complete: true,
+    redeem: false,
   },
   {
+    id: 7,
     title: 'Beginner or luck?',
     desc: '5 Locations Reported',
     img: 'http://dummyimage.com/123x100.png/cc0000/ffffff',
@@ -68,8 +81,10 @@ export const achievements = [
     visited: 0,
     points: 50,
     complete: true,
+    redeem: false,
   },
   {
+    id: 8,
     title: 'Have you done this before??',
     desc: '10 Locations Reported',
     img: 'http://dummyimage.com/216x100.png/ff4444/ffffff',
@@ -78,8 +93,10 @@ export const achievements = [
     visited: 0,
     points: 100,
     complete: true,
+    redeem: false,
   },
   {
+    id: 9,
     title: 'Call the Technician!!',
     desc: '15 Locations Reported',
     img: 'http://dummyimage.com/113x100.png/ff4444/ffffff',
@@ -88,8 +105,10 @@ export const achievements = [
     visited: 0,
     points: 150,
     complete: true,
+    redeem: false,
   },
   {
+    id: 10,
     title: 'Maybe you should really fix it yourself!',
     desc: '20 Locations Reported',
     img: 'http://dummyimage.com/223x100.png/cc0000/ffffff',
@@ -98,8 +117,10 @@ export const achievements = [
     visited: 0,
     points: 200,
     complete: true,
+    redeem: false,
   },
   {
+    id: 11,
     title: 'God of Reporting Faults',
     desc: '25 Locations Reported',
     img: 'http://dummyimage.com/134x100.png/5fa2dd/ffffff',
@@ -108,8 +129,10 @@ export const achievements = [
     visited: 0,
     points: 250,
     complete: false,
+    redeem: false,
   },
   {
+    id: 12,
     title: 'It is time for you to be the technician',
     desc: '30 Locations Reported',
     img: 'https://cdn.quasar.dev/img/chaosmonkey.png',
@@ -118,5 +141,6 @@ export const achievements = [
     visited: 0,
     points: 300,
     complete: false,
+    redeem: false,
   },
 ];

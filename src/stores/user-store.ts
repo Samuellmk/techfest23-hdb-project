@@ -1,10 +1,11 @@
+import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 
-export const userStore = defineStore('user', {
+export const useUserStore = defineStore('user', {
   state: () => ({
-    name: 'James',
-    gender: 'male',
-    email: 'James111@gmail.com',
+    userID: useLocalStorage('userID', ''),
+    username: useLocalStorage('username', ''),
+    userProfileID: useLocalStorage('userProfileID', ''),
     points: 124,
     reported: 0,
     visited: 5,
@@ -22,6 +23,11 @@ export const userStore = defineStore('user', {
     },
     incrementVisited(visit: number) {
       this.visited += visit;
+    },
+    clear() {
+      this.userID = '';
+      this.username = '';
+      this.userProfileID = '';
     },
   },
 });
