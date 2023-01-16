@@ -12,6 +12,10 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;400;500;600;700;900&display=swap');
+
+$typography-font-family: 'Jost', sans-serif !default;
+
 $primary: #ed001c;
 $secondary: #13b89f;
 $accent: #a5a4a4;
