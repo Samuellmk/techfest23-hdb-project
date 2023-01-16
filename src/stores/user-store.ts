@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('counter', {
+export const userStore = defineStore('user', {
   state: () => ({
     name: 'James',
     gender: 'male',
     email: 'James111@gmail.com',
-    points: 1234,
+    points: 124,
     reported: 0,
     visited: 5,
   }),

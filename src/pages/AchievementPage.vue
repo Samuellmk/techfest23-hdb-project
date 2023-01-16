@@ -2,7 +2,7 @@
   <q-page class="bg-grey-3">
     <q-item :clickable="true" @click="onRedemptionClick()">
       <q-item-section> Points Available: </q-item-section>
-      <q-item-section side right> 1234 </q-item-section>
+      <q-item-section side right> {{ user.points }} </q-item-section>
     </q-item>
 
     <q-list bordered class="rounded-borders" style="max-width: 600px">
@@ -17,10 +17,15 @@
 
         <q-item-section top>
           <q-item-label lines="1">
-            <span class="text-weight-medium">{{ achievement.title }}</span>
+            <span class="text-weight-bold">{{ achievement.title }}</span>
           </q-item-label>
           <q-item-label lines="1">
-            <span class="text-grey-8"> - {{ achievement.desc }}</span>
+            <span class="text-grey-8"> {{ achievement.desc }}</span>
+          </q-item-label>
+          <q-item-label lines="1">
+            <span class="text-weight-bold text-capitalize"
+              >{{ achievement.points }} Points Reward</span
+            >
           </q-item-label>
           <q-item-label caption lines="1">
             {{ achievement.captions }}
@@ -48,8 +53,10 @@
 import vuePlugin from '@vitejs/plugin-vue';
 import { ref } from 'vue';
 import { achievements } from './achievements';
-import { userProfile } from './userProfile';
 import { useRouter } from 'vue-router';
+import { userStore } from 'src/stores/user-store';
+
+const user = userStore();
 
 const router = useRouter();
 const onRedemptionClick = () => {

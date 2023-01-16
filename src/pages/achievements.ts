@@ -6,6 +6,7 @@ export const achievements = [
     captions: 'Wonderful you have visited every where!',
     reported: 0,
     visited: 5,
+    points: 50,
     complete: true,
   },
   {
@@ -15,6 +16,7 @@ export const achievements = [
     captions: 'Wonderful you have visited every where!',
     reported: 0,
     visited: 10,
+    points: 100,
     complete: true,
   },
   {
@@ -24,6 +26,7 @@ export const achievements = [
     captions: 'Wonderful you have visited every where!',
     reported: 0,
     visited: 15,
+    points: 150,
     complete: true,
   },
   {
@@ -33,6 +36,7 @@ export const achievements = [
     captions: 'Wonderful you have visited every where!',
     reported: 0,
     visited: 20,
+    points: 200,
     complete: true,
   },
   {
@@ -42,15 +46,17 @@ export const achievements = [
     captions: 'Wonderful you have visited every where!',
     reported: 0,
     visited: 25,
+    points: 250,
     complete: false,
   },
   {
     title: 'Best of the Best',
     desc: '30 Locations Visited',
     img: 'https://cdn.quasar.dev/img/chaosmonkey.png',
-    captions: 'Wonderful you have visited every where!',
+    captions: 'Wonderful you have visited everywhere!',
     reported: 0,
     visited: 30,
+    points: 300,
     complete: true,
   },
   {
@@ -60,6 +66,7 @@ export const achievements = [
     captions: 'Wonderful you have fixed stuff!',
     reported: 5,
     visited: 0,
+    points: 50,
     complete: true,
   },
   {
@@ -69,6 +76,7 @@ export const achievements = [
     captions: 'Wonderful you have fixed stuff!',
     reported: 10,
     visited: 0,
+    points: 100,
     complete: true,
   },
   {
@@ -78,6 +86,7 @@ export const achievements = [
     captions: 'Wonderful you have fixed stuff!',
     reported: 15,
     visited: 0,
+    points: 150,
     complete: true,
   },
   {
@@ -87,6 +96,7 @@ export const achievements = [
     captions: 'Wonderful you have fixed stuff!',
     reported: 20,
     visited: 0,
+    points: 200,
     complete: true,
   },
   {
@@ -96,6 +106,7 @@ export const achievements = [
     captions: 'Wonderful you have fixed stuff!',
     reported: 25,
     visited: 0,
+    points: 250,
     complete: false,
   },
   {
@@ -105,6 +116,7 @@ export const achievements = [
     captions: 'Wonderful you have fixed stuff!',
     reported: 30,
     visited: 0,
+    points: 300,
     complete: false,
   },
 ];
