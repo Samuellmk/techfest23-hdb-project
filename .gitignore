@@ -37,3 +37,11 @@ src-capacitor/android/app/src/main/res/xml/config.xml
 src-capacitor/android/capacitor.settings.gradle
 src-capacitor/capacitor.config.json
 src-capacitor/package.json
+
+#Ignoring Pocketbase DB
+pocketbase_0.11.2_windows_amd64/pb_data/data.db
+pocketbase_0.11.2_windows_amd64/pb_data/data.db-shm
+pocketbase_0.11.2_windows_amd64/pb_data/data.db-wal
+pocketbase_0.11.2_windows_amd64/pb_data/logs.db
+pocketbase_0.11.2_windows_amd64/pb_data/logs.db-shm
+pocketbase_0.11.2_windows_amd64/pb_data/logs.db-wal
