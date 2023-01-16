@@ -17,10 +17,15 @@ const routes: RouteRecordRaw[] = [
       { path: '', component: () => import('pages/HomePage.vue') },
       {
         path: 'achievement',
-        component: () => import('src/layouts/AchievementLayout.vue'),
+        component: () => import('src/pages/AchievementPage.vue'),
+      },
+      {
+        path: 'redemption',
+        component: () => import('src/pages/PointRedemptionPage.vue'),
       },
     ],
   },
+
   {
     path: '/login',
     component: () => import('layouts/NoLoginLayout.vue'),
