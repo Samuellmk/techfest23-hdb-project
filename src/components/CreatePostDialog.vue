@@ -21,11 +21,12 @@
           <q-btn
             unelevated
             rounded
-            color="blue-8"
+            :color="disable() ? 'grey-3' : 'blue-8'"
+            :text-color="disable() ? 'grey-7' : 'white'"
             label="POST"
             type="submit"
             @click="onSubmit"
-            :disable="!(title && description && imageUrl)"
+            :disable="disable()"
           />
         </div>
 
@@ -116,6 +117,8 @@ const dialog = computed({
     emits('update:dialog', value);
   },
 });
+
+const disable = () => !(title.value && description.value && imageUrl.value);
 
 const onImageClick = () => {
   file.value.pickFiles();
