@@ -4,14 +4,9 @@ import PostViewMoreLayout from 'src/layouts/HeaderLayout.vue';
 import PostViewMoreComponent from 'src/components/PostViewMoreComponent.vue';
 
 const routes: RouteRecordRaw[] = [
-  // {
-  //   path: '/',
-  //   component: PostViewMoreLayout,
-  //   children: [{ path: '', component: () => PostViewMoreComponent }],
-  // },
-
   {
     path: '/',
+    meta: { requiresAuth: true },
     component: () => HomeLayout,
     children: [
       { path: '', component: () => import('pages/HomePage.vue') },
@@ -29,7 +24,17 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-
+  {
+    path: '/posts',
+    component: PostViewMoreLayout,
+    children: [
+      {
+        path: '/:postId',
+        name: 'posts',
+        component: () => PostViewMoreComponent,
+      },
+    ],
+  },
   {
     path: '/login',
     component: () => import('layouts/NoLoginLayout.vue'),

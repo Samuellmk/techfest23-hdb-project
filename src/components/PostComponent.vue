@@ -6,9 +6,7 @@
           <q-icon name="style" class="q-mr-xs" />
           <div class="text-subtitle q-mr-sm">{{ props.post.community }}</div>
           <div class="text-subtitle text-grey-7 q-mr-sm">•</div>
-          <div class="text-subtitle text-grey-7">
-            {{ props.post.last_posted }}h
-          </div>
+          <div class="text-subtitle text-grey-7">{{ props.post.time }}h</div>
         </div>
         <p>
           {{ props.post.title }}
@@ -27,7 +25,7 @@
               padding="xs"
               size="sm"
             />
-            <div class="text-grey-8">{{ props.post.comments }}</div>
+            <div class="text-grey-8">{{ props.post.comments.length }}</div>
           </div>
           <div class="row items-center">
             <q-btn flat color="grey-8" icon="o_share" padding="xs" size="sm" />
