@@ -45,3 +45,5 @@ pocketbase_0.11.2_windows_amd64/pb_data/data.db-wal
 pocketbase_0.11.2_windows_amd64/pb_data/logs.db
 pocketbase_0.11.2_windows_amd64/pb_data/logs.db-shm
 pocketbase_0.11.2_windows_amd64/pb_data/logs.db-wal
+pocketbase_0.11.2_windows_amd64/pb_data/data.db
+pocketbase_0.11.2_windows_amd64/pb_data/logs.db

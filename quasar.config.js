@@ -66,7 +66,7 @@ module.exports = configure(function (/* ctx */) {
       env: {
         MAPBOX_ACCESS_TOKEN:
           'pk.eyJ1IjoibGl6aGFveXVhbjEyMyIsImEiOiJjbGN4bzU4cm0wMGs2M29vODc5MDJvamljIn0.BzCAI_NWKyUBHv2aQYhkuQ',
-        VITE_POCKETBASE_URL: 'http://localhost:8090',
+        VITE_POCKETBASE_URL: 'http://10.0.2.2:8090',
       },
       // rawDefine: {}
       // ignorePublicFolder: true,

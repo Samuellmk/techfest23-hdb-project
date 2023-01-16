@@ -1,69 +1,87 @@
 <template>
-  <h2 class="text-2xl font-bold">Register</h2>
-  <q-form class="q-gutter-md" @submit.prevent="createUser">
-    <q-input
-      square
-      filled
-      clearable
-      v-model="username"
-      label="Username"
-      lazy-rules
-      :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-    />
-    <q-input
-      square
-      filled
-      clearable
-      v-model="email"
-      label="Email"
-      type="email"
-      lazy-rules
-      :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-    />
-    <q-input
-      square
-      filled
-      clearable
-      v-model="password"
-      type="password"
-      label="Password"
-      lazy-rules
-      :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-    />
-    <q-input
-      square
-      filled
-      clearable
-      v-model="passwordConfirm"
-      type="password"
-      label="Repeat Password"
-      lazy-rules
-      :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-    />
-
-    <q-card-actions class="q-px-md">
+  <div class="column fit window-height q-pa-md">
+    <div
+      class="flex justify-center items-center text-center text-h5 col text-weight-medium"
+    >
+      Hello new resident, welcome to Complaiddit
+    </div>
+    <q-form class="col-6">
+      <q-input
+        square
+        filled
+        clearable
+        v-model="username"
+        placeholder="Username"
+        lazy-rules
+        :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+      />
+      <q-input
+        square
+        filled
+        clearable
+        v-model="email"
+        placeholder="Email"
+        type="email"
+        lazy-rules
+        :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+      />
+      <q-input
+        square
+        filled
+        clearable
+        v-model="password"
+        placeholder="Password"
+        :type="isPwd ? 'password' : 'text'"
+        lazy-rules
+        :rules="[(val) => (val && val.length > 0) || 'Please type something']"
+      >
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
+          />
+        </template>
+      </q-input>
+    </q-form>
+    <div class="text-center">
+      By continuing, you agree to our
+      <span class="text-orange-10" style="text-decoration: underline"
+        >User Agreement
+      </span>
+      and
+      <span class="text-orange-10" style="text-decoration: underline">
+        Privacy Policy
+      </span>
+    </div>
+    <div class="col q-pt-lg">
       <q-btn
         unelevated
-        color="primary"
+        rounded
+        color="orange-10"
         size="lg"
         class="full-width"
-        label="Register"
+        label="Continue"
+        no-caps
         type="submit"
+        @click="createUser"
       />
-    </q-card-actions>
-  </q-form>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { inject, ref } from 'vue';
-import { pocketBaseSymbol } from 'src/symbols/injectionSymbols';
+import { ref } from 'vue';
+import PocketBase from 'pocketbase';
 import { useUserStore } from 'src/stores/user';
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
 
+const isPwd = ref(true);
+
 const $q = useQuasar();
-// Inject the PocketBase client
-const $pb = inject(pocketBaseSymbol);
+
+const pb = new PocketBase(process.env.VITE_POCKETBASE_URL);
 
 // Init the store
 const userStore = useUserStore();
@@ -75,31 +93,26 @@ const router = useRouter();
 const email = ref('');
 const username = ref('');
 const password = ref('');
-const passwordConfirm = ref('');
 
 // Function to create a new user
 const createUser = async () => {
   try {
-    if (validateInput()) {
-      // Create new user
-      const user = await $pb?.collection('users').create({
-        username: username.value,
-        email: email.value,
-        password: password.value,
-        passwordConfirm: passwordConfirm.value,
-      });
-      if (user) {
-        // Authenticate the user in order to set the username
-        await authUser();
-
-        // After succesfull user registration, redirect to dashboard
-        router.push({ path: '/' });
-      } else {
-        console.log('Error');
-        $q.notify('Error');
-      }
+    // Create new user
+    const user = await pb.collection('users').create({
+      username: username.value,
+      email: email.value,
+      password: password.value,
+      passwordConfirm: password.value,
+    });
+    if (user) {
+      // Authenticate the user in order to set the username
+      await authUser();
+      $q.notify('Logged in');
+      // After succesfull user registration, redirect to dashboard
+      router.push({ path: '/' });
     } else {
-      alert("Password doesn't match");
+      console.log('Error');
+      $q.notify('Error');
     }
   } catch (error) {
     console.log(error);
@@ -111,7 +124,7 @@ const createUser = async () => {
 const authUser = async () => {
   try {
     // Authenticate the user via email and password
-    const userData = await $pb
+    const userData = await pb
       ?.collection('users')
       .authWithPassword(email.value, password.value);
     if (userData) {
@@ -123,15 +136,6 @@ const authUser = async () => {
   } catch (error) {
     console.log(error);
     $q.notify('Error authenticating Please Try Again');
-  }
-};
-
-// Simple utility function to validate input. Easiliy extendable with additional checks if needed
-const validateInput = () => {
-  if (password.value !== passwordConfirm.value) {
-    return false;
-  } else {
-    return true;
   }
 };
 </script>

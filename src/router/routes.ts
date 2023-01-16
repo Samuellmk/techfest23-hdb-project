@@ -36,9 +36,20 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: '/login',
+    path: '/',
     component: () => import('layouts/NoLoginLayout.vue'),
-    children: [{ path: '', component: () => import('pages/LoginPage.vue') }],
+    children: [
+      {
+        path: 'login',
+        name: 'login',
+        component: () => import('pages/LoginPage.vue'),
+      },
+      {
+        path: 'register',
+        name: 'register',
+        component: () => import('pages/RegisterPage.vue'),
+      },
+    ],
   },
   // Always leave this as last one,
   // but you can also remove it

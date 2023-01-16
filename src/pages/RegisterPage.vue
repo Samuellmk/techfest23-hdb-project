@@ -1,9 +1,9 @@
 <template>
   <q-page class="bg-white full-height">
-    <LoginComponent />
+    <RegisterComponent />
   </q-page>
 </template>
 
 <script setup lang="ts">
-import LoginComponent from '../components/LoginComponent.vue';
+import RegisterComponent from 'src/components/RegisterComponent.vue';
 </script>

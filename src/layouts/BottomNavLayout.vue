@@ -1,20 +1,6 @@
 <template>
   <q-layout view="lHh lpr lFf">
-    <q-header bordered class="bg-white text-primary">
-      <q-toolbar elevated class="justify-between">
-        <q-btn flat icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        <q-btn
-          unelevated
-          rounded
-          size="sm"
-          color="red-8"
-          label="Log out"
-          text-color="white"
-          aira-label="Logout"
-          @click="onLogoutClick"
-        />
-      </q-toolbar>
-    </q-header>
+    <q-header bordered class="bg-white text-primary"> </q-header>
 
     <q-page-container>
       <q-page class="bg-grey-2">
@@ -76,13 +62,7 @@ import EssentialLink from 'components/EssentialLink.vue';
 import { communities } from './communities';
 import CreatePostDialog from 'src/components/CreatePostDialog.vue';
 import { useRouter } from 'vue-router';
-import { useUserStore } from 'src/stores/user';
-import PocketBase from 'pocketbase';
-import { useQuasar } from 'quasar';
 
-const pb = new PocketBase(process.env.VITE_POCKETBASE_URL);
-const $q = useQuasar();
-const userStore = useUserStore();
 const router = useRouter();
 
 const tab = ref('images');
@@ -90,10 +70,6 @@ const tab = ref('images');
 const dialogForPostCreation = ref(false);
 
 const leftDrawerOpen = ref(false);
-
-const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-};
 
 const onHomeClick = () => {
   router.push('/');
@@ -105,13 +81,6 @@ const onCreateClick = () => {
 
 const onAchievementClick = () => {
   router.push('/achievement');
-};
-
-const onLogoutClick = async () => {
-  await userStore.clear();
-  await pb.authStore.clear();
-  $q.notify('Logged out');
-  router.push('/login');
 };
 </script>
 
