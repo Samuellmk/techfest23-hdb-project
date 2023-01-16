@@ -16,7 +16,7 @@ export interface PBPostModel {
   comments: string[];
   time: number;
   imagelink: string;
-  image: string;
+  imagestring: string;
   created: Date;
   updated: Date;
 }

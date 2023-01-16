@@ -37,7 +37,7 @@
         <q-img
           :src="
             props.post.imagelink === ''
-              ? props.post.image
+              ? props.post.imagestring
               : props.post.imagelink
           "
           :ratio="16 / 9"

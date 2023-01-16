@@ -106,6 +106,7 @@ const store = usePostStore();
 const user = useUserStore();
 const props = defineProps(['dialog']);
 const emits = defineEmits(['update:dialog']);
+const fileReader = new FileReader();
 
 const title = ref('');
 const description = ref('');
@@ -149,14 +150,14 @@ const reset = () => {
 const onSubmit = async () => {
   store.setTitleAndDescription(title.value, description.value);
   dialog.value = false;
-  console.log(user);
+  console.log(typeof imageUrl.value);
   const data = {
     username: user.username,
     community: 'test',
     description: description.value,
     title: title.value,
     votes: 0,
-    imagelink: 'http://dummyimage.com/161x100.png/5fa2dd/ffffff',
+    imagestring: imageUrl.value,
   };
 
   const record = await pb.collection('posts').create(data);
