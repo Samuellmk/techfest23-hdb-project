@@ -56,9 +56,9 @@
 <script setup lang="ts">
 import { redemptions } from './redemptions';
 import { useRouter } from 'vue-router';
-import { userStore } from 'src/stores/user-store';
+import { useUserStore } from 'src/stores/user-store';
 
-const user = userStore();
+const user = useUserStore();
 const router = useRouter();
 const onRedeemClick = () => {
   router.push('/redeem');

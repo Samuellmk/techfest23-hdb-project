@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserStore } from 'src/stores/user';
+import { useUserStore } from 'src/stores/user-store';
 import PocketBase from 'pocketbase';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';

@@ -73,7 +73,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import PocketBase from 'pocketbase';
-import { useUserStore } from 'src/stores/user';
+import { useUserStore } from 'src/stores/user-store';
 import { useRouter } from 'vue-router';
 import { useQuasar } from 'quasar';
 

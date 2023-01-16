@@ -11,9 +11,4 @@
   </q-page>
 </template>
 
-<script setup lang="ts">
-import { redemptions } from './redemptions';
-import { userStore } from 'src/stores/user-store';
-
-const user = userStore();
-</script>
+<script setup lang="ts"></script>
