@@ -23,6 +23,10 @@ const routes: RouteRecordRaw[] = [
         path: 'redemption',
         component: () => import('src/pages/PointRedemptionPage.vue'),
       },
+      {
+        path: 'redeem',
+        component: () => import('src/pages/redeemPage.vue'),
+      },
     ],
   },
 
