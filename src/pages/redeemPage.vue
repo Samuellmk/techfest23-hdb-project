@@ -1,6 +1,6 @@
 <template>
   <q-page class="bg-blue-grey-2">
-    <div class="text-center">
+    <div class="text-center q-pa-xl q-gutter-md">
       <div>
         <div class="text-h6">QR Code Redemption</div>
         <div class="text-center">Here is your QR code!</div>

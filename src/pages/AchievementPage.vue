@@ -1,8 +1,8 @@
 <template>
   <q-page class="bg-grey-3">
     <q-item :clickable="true" @click="onRedemptionClick()">
-      <q-item-section> Points Available: </q-item-section>
-      <q-item-section side right> {{ user.points }} </q-item-section>
+      <q-item-section> Points Available:</q-item-section>
+      <q-item-section> {{ user.points }} </q-item-section>
     </q-item>
 
     <q-list bordered class="rounded-borders" style="max-width: 600px">

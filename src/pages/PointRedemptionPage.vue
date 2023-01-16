@@ -62,5 +62,6 @@ const user = userStore();
 const router = useRouter();
 const onRedeemClick = () => {
   router.push('/redeem');
+  user.decrementPoints(5);
 };
 </script>
