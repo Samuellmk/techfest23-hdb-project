@@ -22,7 +22,10 @@
           @click="onLogoutClick"
         />
         <q-btn
-          v-if="route.name === 'redemption' && tab !== 'home'"
+          v-if="
+            (route.name === 'redemption' || route.name === 'redeem') &&
+            tab !== 'home'
+          "
           flat
           icon="arrow_back"
           aria-label="back"

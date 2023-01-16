@@ -1,52 +1,38 @@
 <template>
-  <q-page class="bg-blue-grey-2">
-    <div class="q-pa-md row items-start q-gutter-md">
-      <div>
-        <div class="text-h6">Points Redemption</div>
-        <div>What would you like to redeem right now?</div>
-        <div>Points: {{ user.points }}</div>
+  <q-page class="grey-2">
+    <div class="column justify-center items-center full-width q-py-md">
+      <div class="text-weight-medium text-subtitle">Balance</div>
+      <div class="text-h5 row items-center text-weight-bold">
+        <q-icon name="o_savings" class="q-pr-sm" size="md" />
+        {{ store.points }}
       </div>
     </div>
-    <div class="q-pa-md row items-start q-gutter-md">
+
+    <div class="row full-width justify-center">
       <q-card
         v-for="redemption in redemptions"
         :key="redemption.discountName"
-        class="my-card col-5"
+        class="col-5 q-ma-sm"
       >
         <q-card-section :class="`bg-${redemption.color}`">
-          <div class="text-h8 wrap">
+          <div class="text-subtitle wrap">
             {{ redemption.discountName }}
           </div>
-          <div class="text-subtitle2">{{ redemption.pointsDeduct }} Points</div>
+          <div class="text-subtitle2 text-weight-bold">
+            {{ redemption.pointsDeduct }} Points
+          </div>
         </q-card-section>
         <q-separator />
 
         <q-card-actions align="center">
-          <q-btn flat @click="onRedeemClick()">Redeem</q-btn>
-        </q-card-actions>
-      </q-card>
-
-      <q-card class="my-card col-5">
-        <q-card-section class="bg-deep-purple-8 text-white">
-          <div class="text-h8 wrap">$10 Season Parking Discount</div>
-          <div class="text-subtitle2">75 Points</div>
-        </q-card-section>
-        <q-separator />
-
-        <q-card-actions align="center">
-          <q-btn flat @click="onRedeemClick()">Redeem</q-btn>
-        </q-card-actions>
-      </q-card>
-
-      <q-card class="my-card col-5">
-        <q-card-section class="bg-deep-orange-8 text-white">
-          <div class="text-h8 text-white wrap">$15 Season Parking Discount</div>
-          <div class="text-subtitle2">125 Points</div>
-        </q-card-section>
-        <q-separator />
-
-        <q-card-actions align="center">
-          <q-btn flat @click="onRedeemClick()">Redeem</q-btn>
+          <q-btn
+            flat
+            @click="onRedeemClick(redemption.pointsDeduct)"
+            class="text-subtitle2 text-weight-bold"
+            :color="checkPoints(redemption.pointsDeduct) ? 'grey' : 'black'"
+            label="Redeem"
+            :disable="checkPoints(redemption.pointsDeduct)"
+          />
         </q-card-actions>
       </q-card>
     </div>
@@ -58,10 +44,17 @@ import { redemptions } from './redemptions';
 import { useRouter } from 'vue-router';
 import { useUserStore } from 'src/stores/user-store';
 
-const user = useUserStore();
+const store = useUserStore();
 const router = useRouter();
-const onRedeemClick = () => {
+
+const checkPoints = (points: number) => {
+  return store.points <= points;
+};
+
+const onRedeemClick = (deductPoints: number) => {
+  store.decrementPoints(deductPoints);
   router.push('/redeem');
-  user.decrementPoints(5);
 };
 </script>
+
+<style scoped></style>
