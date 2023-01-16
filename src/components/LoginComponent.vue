@@ -94,8 +94,8 @@ const authUser = async () => {
 
     if (userData) {
       userStore.userID = userData.record.id;
-      userStore.username = userData.record.profile?.username;
-      userStore.userProfileID = userData.record.profile?.id;
+      userStore.username = userData.record.username;
+      userStore.userProfileID = userData.record.id;
       router.push({ path: '/' });
     }
   } catch (error) {

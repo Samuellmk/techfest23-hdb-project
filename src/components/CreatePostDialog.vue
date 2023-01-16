@@ -96,12 +96,14 @@
 import { computed, ref } from 'vue';
 import { useQuasar } from 'quasar';
 import { usePostStore } from 'src/stores/post-store';
+import { useUserStore } from 'src/stores/user-store';
 import PocketBase from 'pocketbase';
 
 const pb = new PocketBase(process.env.VITE_POCKETBASE_URL);
 
 const $q = useQuasar();
 const store = usePostStore();
+const user = useUserStore();
 const props = defineProps(['dialog']);
 const emits = defineEmits(['update:dialog']);
 
@@ -147,15 +149,14 @@ const reset = () => {
 const onSubmit = async () => {
   store.setTitleAndDescription(title.value, description.value);
   dialog.value = false;
-
+  console.log(user);
   const data = {
-    username: 'test',
+    username: user.username,
     community: 'test',
-    description: 'test',
-    title: 'test',
-    votes: 123,
+    description: description.value,
+    title: title.value,
+    votes: 0,
     imagelink: 'http://dummyimage.com/161x100.png/5fa2dd/ffffff',
-    comments: ['RELATION_RECORD_ID'],
   };
 
   const record = await pb.collection('posts').create(data);
