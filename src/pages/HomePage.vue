@@ -42,11 +42,13 @@ const posts: Ref<PBPostModel[]> = ref([]);
 //const posts = MOCK_POSTS;
 
 const fetchPosts = async () => {
-  posts.value = (await pb
+  const postsUnsorted = (await pb
     .collection('posts')
     .getFullList(200 /* batch size */, {
       sort: '-created',
     })) as PBPostModel[];
+
+  posts.value = postsUnsorted.sort((a, b) => b.votes - a.votes);
 };
 
 onMounted(async () => {

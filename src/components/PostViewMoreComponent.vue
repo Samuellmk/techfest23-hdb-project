@@ -25,7 +25,7 @@
         {{ post?.description }}
       </div>
     </div>
-    <q-img src="http://dummyimage.com/600x500.png/dddddd/000000" />
+    <q-img :src="post?.imagelink ?? post?.imagestring" />
     <div class="row justify-between q-pa-sm">
       <div class="row items-center justify-start">
         <q-btn flat color="grey-8" icon="add" padding="xs" size="sm" />
@@ -44,12 +44,29 @@
         <div class="text-grey-8">{{ post?.comments.length }}</div>
       </div>
       <div class="row items-center">
-        <q-btn flat color="grey-8" icon="o_share" padding="xs" size="sm" />
-        <div class="text-grey-8">Share</div>
+        <q-btn
+          flat
+          no-caps
+          color="grey-8"
+          icon="o_share"
+          padding="xs"
+          size="sm"
+        >
+          <div class="text-weight-medium text-subtitle2 q-ml-xs">Share</div>
+        </q-btn>
       </div>
       <div class="row items-center q-pr-sm">
-        <q-btn flat color="grey-8" icon="done" padding="xs" size="sm" />
-        <div class="text-grey-8">Done</div>
+        <q-btn
+          flat
+          :text-color="done ? 'green' : 'grey-8'"
+          icon="done"
+          padding="xs"
+          size="sm"
+          @click="onDoneClick"
+          no-caps
+        >
+          <div class="text-weight-medium text-subtitle2 q-ml-xs">Done</div>
+        </q-btn>
       </div>
     </div>
   </div>
@@ -61,24 +78,19 @@
 import Comment from './PostViewMoreCommentComponent.vue';
 import { onMounted, Ref, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { PostModel } from 'src/components/models';
-import POST_DATA from 'src/pages/POST_DATA.json';
 import { comment } from 'postcss';
 import { QAvatar, QImg, QBtn, QSpace } from 'quasar';
 import { PBCommentModel, PBPostModel } from 'src/pages/creation-interface';
 import PocketBase from 'pocketbase';
 
 const pb = new PocketBase(process.env.VITE_POCKETBASE_URL);
+const done = ref(false);
 
 const route = useRoute();
 const posts: Ref<PBPostModel[]> = ref([]);
 const post: Ref<PBPostModel | undefined> = ref();
 
 const comments: Ref<PBCommentModel[]> = ref([]);
-
-const fetchPost = (id: string) => {
-  return posts.value.find((e) => e.id === id);
-};
 
 onMounted(async () => {
   posts.value = (await pb
@@ -100,6 +112,10 @@ onMounted(async () => {
     post.value?.comments.includes(item.id)
   );
 });
+
+const onDoneClick = () => {
+  done.value = true;
+};
 </script>
 
 <style scoped></style>
