@@ -45,7 +45,7 @@
           />
           <q-btn no-caps flat :ripple="false" @click="onCreateClick">
             <div class="column items-center no-wrap">
-              <q-icon name="add" style="font-size: 2.3em; margin: -4px" />
+              <q-icon name="add" style="font-size: 2.3em; margin: -5px" />
               <div class="text-center" style="font-size: 0.8em">Create</div>
             </div>
           </q-btn>

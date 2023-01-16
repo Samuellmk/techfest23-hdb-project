@@ -7,49 +7,83 @@
       transition-show="slide-up"
       transition-hide="slide-down"
     >
-      <q-card class="bg-white text-black">
-        <q-btn dense flat icon="close" v-close-popup size="lg">
-          <q-tooltip class="bg-white text-primary">Close</q-tooltip>
-        </q-btn>
+      <q-card class="bg-white text-black q-py-sm">
+        <div class="row justify-between items-center q-pr-md">
+          <q-btn
+            dense
+            flat
+            icon="close"
+            v-close-popup
+            size="lg"
+            class="q-pl-xs q-py-none"
+          />
 
-        <q-card-section class="q-pt-none">
-          <q-form @submit="onSubmit">
+          <q-btn
+            unelevated
+            rounded
+            color="blue-8"
+            label="POST"
+            type="submit"
+            @click="onSubmit"
+            :disable="!(title && description && imageUrl)"
+          />
+        </div>
+
+        <q-card-section class="q-pa-md">
+          <q-form class="q-pa-none q-gutter-y-lg">
             <q-input
+              dense
               borderless
               v-model="title"
               placeholder="Add a title"
               :input-style="{ fontSize: 'large', fontWeight: 'bold' }"
               autogrow
             />
-            <br />
             <q-input
+              dense
               borderless
               v-model="description"
               placeholder="Add body text"
               :input-style="{ fontSize: 'medium' }"
               autogrow
             />
-            <br />
-            <q-uploader
-              class="full-width"
-              url="http://localhost:4444/upload"
-              label="Images Of Fault"
-              multiple
-              max-files="3"
-              batch
-              auto-upload
-              accept=".jpg, image/*"
-              @rejected="onRejected"
-            />
-            <br />
-            <q-btn
-              unelevated
-              color="primary"
-              size="lg"
-              class="full-width"
-              label="POST!"
-              type="submit"
-            />
+            <div v-show="!image">
+              <q-file
+                style="display: none"
+                v-model="image"
+                @update:model-value="handleUpload"
+                ref="file"
+              ></q-file>
+              <q-btn
+                round
+                unelevated
+                color="grey-3"
+                text-color="grey-10"
+                icon="image"
+                @click="onImageClick"
+              />
+            </div>
+            <q-img
+              v-show="image"
+              :src="imageUrl"
+              spinner-color="white"
+              style="height: 140px; max-width: 150px"
+            >
+              <q-btn
+                round
+                unelevated
+                class="absolute all-pointer-events"
+                size="8px"
+                style="
+                  top: 8px;
+                  right: 8px;
+                  background-color: rgba(0, 0, 0, 0.5);
+                "
+                @click="removeImage"
+              >
+                <q-icon name="close" color="white" />
+              </q-btn>
+            </q-img>
           </q-form>
         </q-card-section>
       </q-card>
@@ -70,6 +104,10 @@ const emits = defineEmits(['update:dialog']);
 const title = ref('');
 const description = ref('');
 
+const image = ref();
+const imageUrl = ref('');
+const file = ref();
+
 const dialog = computed({
   get() {
     return props.dialog;
@@ -79,14 +117,25 @@ const dialog = computed({
   },
 });
 
-const onRejected = () => {
-  $q.notify('Image is too large or the format is wrong!');
-  return true;
+const onImageClick = () => {
+  file.value.pickFiles();
+};
+
+const handleUpload = () => {
+  if (image.value) {
+    imageUrl.value = URL.createObjectURL(image.value);
+  }
+};
+
+const removeImage = () => {
+  image.value = null;
+  imageUrl.value = '';
 };
 
 const reset = () => {
   title.value = '';
   description.value = '';
+  image.value = null;
 };
 
 const onSubmit = () => {
