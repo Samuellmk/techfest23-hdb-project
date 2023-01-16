@@ -20,7 +20,7 @@
         </q-item-label>
 
         <EssentialLink
-          v-for="link in essentialLinks"
+          v-for="link in communities"
           :key="link.title"
           v-bind="link"
         />
@@ -62,9 +62,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import EssentialLink, {
-  EssentialLinkProps,
-} from 'components/EssentialLink.vue';
+import EssentialLink from 'components/EssentialLink.vue';
 import { communities } from './communities';
 import CreatePostDialog from 'src/components/CreatePostDialog.vue';
 import { useRouter } from 'vue-router';
@@ -74,8 +72,6 @@ const router = useRouter();
 const tab = ref('images');
 
 const dialogForPostCreation = ref(false);
-
-const essentialLinks: EssentialLinkProps[] = communities;
 
 const leftDrawerOpen = ref(false);
 
