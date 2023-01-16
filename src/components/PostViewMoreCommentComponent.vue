@@ -14,7 +14,9 @@
             {{ props.comment.username }}
           </div>
           <div class="text-subtitle text-grey-7 q-mr-sm">•</div>
-          <div class="text-subtitle text-grey-7">{{ props.comment.time }}h</div>
+          <div class="text-subtitle text-grey-7">
+            {{ props.comment.created }}h
+          </div>
         </div>
       </div>
       <div class="text-subtitle">
@@ -25,10 +27,12 @@
 </template>
 
 <script setup lang="ts">
+import { QAvatar } from 'quasar';
+import { PBCommentModel } from 'src/pages/creation-interface';
 import { CommentModel } from './models';
 
 const props = defineProps<{
-  comment: CommentModel;
+  comment: PBCommentModel;
 }>();
 </script>
 

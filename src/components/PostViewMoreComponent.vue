@@ -14,7 +14,7 @@
           <div class="row">
             <div class="text-subtitle q-mr-sm">{{ post?.username }}</div>
             <div class="text-subtitle text-grey-7 q-mr-sm">•</div>
-            <div class="text-subtitle text-grey-7">{{ post?.time }}</div>
+            <div class="text-subtitle text-grey-7">{{ post?.created }}</div>
           </div>
         </div>
       </div>
@@ -53,31 +53,52 @@
       </div>
     </div>
   </div>
-  <comment
-    :comment="comment"
-    v-for="comment of post?.comments"
-    :key="comment.username"
-  />
+  <comment :comment="comment" v-for="comment of comments" :key="comment.id" />
   <q-space class="q-pt-xs" />
 </template>
 
 <script setup lang="ts">
 import Comment from './PostViewMoreCommentComponent.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted, Ref, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { PostModel } from 'src/components/models';
 import POST_DATA from 'src/pages/POST_DATA.json';
+import { comment } from 'postcss';
+import { QAvatar, QImg, QBtn, QSpace } from 'quasar';
+import { PBCommentModel, PBPostModel } from 'src/pages/creation-interface';
+import PocketBase from 'pocketbase';
+
+const pb = new PocketBase(process.env.VITE_POCKETBASE_URL);
 
 const route = useRoute();
-const post = ref<PostModel>();
+const posts: Ref<PBPostModel[]> = ref([]);
+const post: Ref<PBPostModel | undefined> = ref();
 
-const fetchPost = (id: number) => {
-  return POST_DATA.find((e) => e.id === id);
+const comments: Ref<PBCommentModel[]> = ref([]);
+
+const fetchPost = (id: string) => {
+  return posts.value.find((e) => e.id === id);
 };
 
 onMounted(async () => {
-  console.log(route.params.postId);
-  post.value = await fetchPost(Number(route.params.postId));
+  posts.value = (await pb
+    .collection('posts')
+    .getFullList(200 /* batch size */, {
+      sort: '-created',
+    })) as PBPostModel[];
+  post.value = posts.value.find(
+    (e) => e.id === route.params.postId
+  ) as PBPostModel;
+
+  comments.value = (await pb
+    .collection('comments')
+    .getFullList(200 /* batch size */, {
+      sort: '-created',
+    })) as PBCommentModel[];
+
+  comments.value = comments.value.filter((item) =>
+    post.value?.comments.includes(item.id)
+  );
 });
 </script>
 

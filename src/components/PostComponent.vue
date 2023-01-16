@@ -6,7 +6,7 @@
           <q-icon name="style" class="q-mr-xs" />
           <div class="text-subtitle q-mr-sm">{{ props.post.community }}</div>
           <div class="text-subtitle text-grey-7 q-mr-sm">•</div>
-          <div class="text-subtitle text-grey-7">{{ props.post.time }}h</div>
+          <div class="text-subtitle text-grey-7">{{ props.post.created }}h</div>
         </div>
         <p>
           {{ props.post.title }}
@@ -34,16 +34,25 @@
         </div>
       </div>
       <div class="col-4 center">
-        <q-img :src="`${props.post.image}`" :ratio="16 / 9" fit="contain" />
+        <q-img
+          :src="
+            props.post.imagelink === ''
+              ? props.post.image
+              : props.post.imagelink
+          "
+          :ratio="16 / 9"
+          fit="contain"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { PBPostModel } from 'src/pages/creation-interface';
 import { PostModel } from './models';
 const props = defineProps<{
-  post: PostModel;
+  post: PBPostModel;
 }>();
 </script>
 

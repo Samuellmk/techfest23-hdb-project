@@ -96,6 +96,9 @@
 import { computed, ref } from 'vue';
 import { useQuasar } from 'quasar';
 import { usePostStore } from 'src/stores/post-store';
+import PocketBase from 'pocketbase';
+
+const pb = new PocketBase(process.env.VITE_POCKETBASE_URL);
 
 const $q = useQuasar();
 const store = usePostStore();
@@ -141,9 +144,22 @@ const reset = () => {
   image.value = null;
 };
 
-const onSubmit = () => {
+const onSubmit = async () => {
   store.setTitleAndDescription(title.value, description.value);
   dialog.value = false;
+
+  const data = {
+    username: 'test',
+    community: 'test',
+    description: 'test',
+    title: 'test',
+    votes: 123,
+    imagelink: 'http://dummyimage.com/161x100.png/5fa2dd/ffffff',
+    comments: ['RELATION_RECORD_ID'],
+  };
+
+  const record = await pb.collection('posts').create(data);
+
   reset();
   $q.notify('Posting!');
 };
